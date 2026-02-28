@@ -1,0 +1,168 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum Language {
+  fr
+  en
+  auto
+}
+
+enum Tone {
+  professional
+  friendly
+  casual
+}
+
+enum SubscriptionPlan {
+  trial
+  starter
+  growth
+}
+
+enum SubscriptionStatus {
+  active
+  past_due
+  cancelled
+}
+
+enum UserRole {
+  owner
+  manager
+}
+
+enum ResponseStatus {
+  pending
+  drafted
+  approved
+  posted
+  skipped
+}
+
+enum CampaignChannel {
+  sms
+  email
+}
+
+enum CampaignStatus {
+  draft
+  active
+  paused
+  completed
+}
+
+enum RecipientStatus {
+  pending
+  sent
+  delivered
+  failed
+  clicked
+  reviewed
+}
+
+// ─── Models ──────────────────────────────────────────────────────────────────
+
+model Organization {
+  id                 String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name               String             @db.VarChar(255)
+  slug               String             @unique @db.VarChar(100)
+  googlePlaceId      String?            @map("google_place_id") @db.VarChar(255)
+  googleAccountId    String?            @map("google_account_id") @db.VarChar(255)
+  googleAccessToken  String?            @map("google_access_token") @db.Text
+  googleRefreshToken String?            @map("google_refresh_token") @db.Text
+  tokenExpiresAt     DateTime?          @map("token_expires_at")
+  languagePreference Language           @default(auto) @map("language_preference")
+  tonePreference     Tone               @default(friendly) @map("tone_preference")
+  businessType       String?            @map("business_type") @db.VarChar(100)
+  reviewLink         String?            @map("review_link") @db.Text
+  timezone           String             @default("America/Montreal") @db.VarChar(50)
+  stripeCustomerId   String?            @map("stripe_customer_id") @db.VarChar(255)
+  subscriptionPlan   SubscriptionPlan   @default(trial) @map("subscription_plan")
+  subscriptionStatus SubscriptionStatus @default(active) @map("subscription_status")
+  trialEndsAt        DateTime?          @map("trial_ends_at")
+  createdAt          DateTime           @default(now()) @map("created_at")
+  updatedAt          DateTime           @updatedAt @map("updated_at")
+
+  users     User[]
+  reviews   Review[]
+  campaigns Campaign[]
+
+  @@map("organizations")
+}
+
+model User {
+  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  organizationId String       @map("organization_id") @db.Uuid
+  email          String       @db.VarChar(255)
+  fullName       String       @map("full_name") @db.VarChar(255)
+  role           UserRole     @default(owner)
+  createdAt      DateTime     @default(now()) @map("created_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("users")
+}
+
+model Review {
+  id                String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  organizationId    String         @map("organization_id") @db.Uuid
+  googleReviewId    String         @unique @map("google_review_id") @db.VarChar(255)
+  reviewerName      String         @map("reviewer_name") @db.VarChar(255)
+  starRating        Int            @map("star_rating")
+  reviewText        String?        @map("review_text") @db.Text
+  reviewLanguage    String?        @map("review_language") @db.VarChar(10)
+  reviewedAt        DateTime       @map("reviewed_at")
+  responseStatus    ResponseStatus @default(pending) @map("response_status")
+  aiResponseText    String?        @map("ai_response_text") @db.Text
+  finalResponseText String?        @map("final_response_text") @db.Text
+  respondedAt       DateTime?      @map("responded_at")
+  createdAt         DateTime       @default(now()) @map("created_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, responseStatus])
+  @@index([organizationId, reviewedAt])
+  @@map("reviews")
+}
+
+model Campaign {
+  id              String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  organizationId  String         @map("organization_id") @db.Uuid
+  name            String         @db.VarChar(255)
+  channel         CampaignChannel
+  messageTemplate String         @map("message_template") @db.Text
+  status          CampaignStatus @default(draft)
+  totalSent       Int            @default(0) @map("total_sent")
+  totalClicked    Int            @default(0) @map("total_clicked")
+  totalReviews    Int            @default(0) @map("total_reviews")
+  createdAt       DateTime       @default(now()) @map("created_at")
+
+  organization Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  recipients   CampaignRecipient[]
+
+  @@index([organizationId])
+  @@map("campaigns")
+}
+
+model CampaignRecipient {
+  id           String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  campaignId   String          @map("campaign_id") @db.Uuid
+  contactValue String          @map("contact_value") @db.VarChar(255)
+  consentGiven Boolean         @default(false) @map("consent_given")
+  status       RecipientStatus @default(pending)
+  sentAt       DateTime?       @map("sent_at")
+  clickedAt    DateTime?       @map("clicked_at")
+
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+  @@map("campaign_recipients")
+}
