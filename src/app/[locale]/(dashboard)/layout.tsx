@@ -1,8 +1,10 @@
 import { redirect } from "next/navigation";
+import { getLocale } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
 import { UserMenu } from "@/components/layout/user-menu";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 
 export default async function DashboardLayout({
   children,
@@ -10,10 +12,13 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const locale = await getLocale();
 
   if (!user) {
-    redirect("/login");
+    redirect(`/${locale}/login`);
   }
 
   const fullName =
@@ -36,10 +41,15 @@ export default async function DashboardLayout({
 
       {/* Main content */}
       <div className="flex flex-1 flex-col">
-        {/* Mobile header */}
-        <header className="flex h-14 items-center gap-4 border-b px-4 lg:hidden">
-          <MobileNav />
-          <span className="font-bold">ReviewBoost</span>
+        {/* Header */}
+        <header className="flex h-14 items-center gap-4 border-b px-4">
+          <div className="lg:hidden">
+            <MobileNav />
+          </div>
+          <span className="font-bold lg:hidden">ReviewBoost</span>
+          <div className="ml-auto">
+            <LanguageSwitcher />
+          </div>
         </header>
 
         <main className="flex-1 p-6">{children}</main>

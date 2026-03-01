@@ -1,5 +1,12 @@
-import Link from "next/link";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -11,23 +18,23 @@ export default function SignupPage({
 }: {
   searchParams: { error?: string; message?: string };
 }) {
+  const t = useTranslations();
+
   return (
     <Card>
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl">Create Account</CardTitle>
-        <CardDescription>
-          Start managing your reviews with AI
-        </CardDescription>
+        <CardTitle className="text-2xl">{t("auth.signUp")}</CardTitle>
+        <CardDescription>{t("auth.signUpDescription")}</CardDescription>
       </CardHeader>
       <CardContent>
         {searchParams.error === "signup" && (
           <div className="mb-4 rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-            Could not create account. Please try again.
+            {t("auth.errorSignup")}
           </div>
         )}
         {searchParams.message === "check-email" && (
           <div className="mb-4 rounded-md bg-primary/10 p-3 text-sm text-primary">
-            Check your email for a confirmation link to complete signup.
+            {t("auth.checkEmail")}
           </div>
         )}
 
@@ -51,57 +58,62 @@ export default function SignupPage({
                 fill="#EA4335"
               />
             </svg>
-            Continue with Google
+            {t("auth.continueWithGoogle")}
           </Button>
         </form>
 
         <div className="my-6 flex items-center gap-3">
           <Separator className="flex-1" />
-          <span className="text-xs text-muted-foreground">OR</span>
+          <span className="text-xs text-muted-foreground">
+            {t("common.or")}
+          </span>
           <Separator className="flex-1" />
         </div>
 
         <form action={signup} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="fullName">Full Name</Label>
+            <Label htmlFor="fullName">{t("auth.fullName")}</Label>
             <Input
               id="fullName"
               name="fullName"
               type="text"
-              placeholder="Marie-Claire Tremblay"
+              placeholder={t("auth.fullNamePlaceholder")}
               required
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t("common.email")}</Label>
             <Input
               id="email"
               name="email"
               type="email"
-              placeholder="you@example.com"
+              placeholder={t("common.emailPlaceholder")}
               required
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">{t("common.password")}</Label>
             <Input
               id="password"
               name="password"
               type="password"
-              placeholder="At least 6 characters"
+              placeholder={t("auth.passwordMinLength")}
               minLength={6}
               required
             />
           </div>
           <Button type="submit" className="w-full">
-            Create Account
+            {t("auth.createAccount")}
           </Button>
         </form>
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          Already have an account?{" "}
-          <Link href="/login" className="font-medium text-primary hover:underline">
-            Sign in
+          {t("auth.haveAccount")}{" "}
+          <Link
+            href="/login"
+            className="font-medium text-primary hover:underline"
+          >
+            {t("auth.signIn")}
           </Link>
         </p>
       </CardContent>

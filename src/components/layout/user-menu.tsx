@@ -1,6 +1,6 @@
 "use client";
 
-import { signOut } from "@/app/(auth)/actions";
+import { signOut } from "@/app/[locale]/(auth)/actions";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -11,7 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LogOut, Settings, User } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface UserMenuProps {
   email: string;
@@ -19,6 +20,7 @@ interface UserMenuProps {
 }
 
 export function UserMenu({ email, fullName }: UserMenuProps) {
+  const t = useTranslations("userMenu");
   const initials = fullName
     .split(" ")
     .map((n) => n[0])
@@ -38,18 +40,18 @@ export function UserMenu({ email, fullName }: UserMenuProps) {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("myAccount")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href="/dashboard/settings">
             <Settings className="mr-2 h-4 w-4" />
-            Settings
+            {t("settings")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/dashboard/settings">
             <User className="mr-2 h-4 w-4" />
-            Profile
+            {t("profile")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -57,7 +59,7 @@ export function UserMenu({ email, fullName }: UserMenuProps) {
           <form action={signOut} className="w-full">
             <button type="submit" className="flex w-full items-center">
               <LogOut className="mr-2 h-4 w-4" />
-              Sign Out
+              {t("signOut")}
             </button>
           </form>
         </DropdownMenuItem>

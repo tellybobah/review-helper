@@ -1,11 +1,13 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { redirect } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getLocale } from "next-intl/server";
 
 export async function login(formData: FormData) {
   const supabase = await createClient();
+  const locale = await getLocale();
 
   const data = {
     email: formData.get("email") as string,
@@ -15,15 +17,16 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    redirect("/login?error=invalid");
+    redirect({ href: "/login?error=invalid", locale });
   }
 
   revalidatePath("/", "layout");
-  redirect("/dashboard");
+  redirect({ href: "/dashboard", locale });
 }
 
 export async function signup(formData: FormData) {
   const supabase = await createClient();
+  const locale = await getLocale();
 
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
@@ -40,31 +43,33 @@ export async function signup(formData: FormData) {
   });
 
   if (error) {
-    redirect("/signup?error=signup");
+    redirect({ href: "/signup?error=signup", locale });
   }
 
   revalidatePath("/", "layout");
-  redirect("/signup?message=check-email");
+  redirect({ href: "/signup?message=check-email", locale });
 }
 
 export async function forgotPassword(formData: FormData) {
   const supabase = await createClient();
+  const locale = await getLocale();
 
   const email = formData.get("email") as string;
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?next=/dashboard/settings`,
+    redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?next=/${locale}/dashboard/settings`,
   });
 
   if (error) {
-    redirect("/forgot-password?error=reset");
+    redirect({ href: "/forgot-password?error=reset", locale });
   }
 
-  redirect("/forgot-password?message=check-email");
+  redirect({ href: "/forgot-password?message=check-email", locale });
 }
 
 export async function signInWithGoogle() {
   const supabase = await createClient();
+  const locale = await getLocale();
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
@@ -74,17 +79,20 @@ export async function signInWithGoogle() {
   });
 
   if (error) {
-    redirect("/login?error=oauth");
+    redirect({ href: "/login?error=oauth", locale });
   }
 
   if (data.url) {
-    redirect(data.url);
+    // Use next/navigation redirect for external URLs
+    const { redirect: nextRedirect } = await import("next/navigation");
+    nextRedirect(data.url);
   }
 }
 
 export async function signOut() {
   const supabase = await createClient();
+  const locale = await getLocale();
   await supabase.auth.signOut();
   revalidatePath("/", "layout");
-  redirect("/login");
+  redirect({ href: "/login", locale });
 }

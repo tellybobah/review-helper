@@ -1,0 +1,80 @@
+{
+  "common": {
+    "appName": "ReviewBoost",
+    "or": "OR",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "you@example.com",
+    "loading": "Loading..."
+  },
+  "landing": {
+    "tagline": "AI-powered review management for small businesses",
+    "getStarted": "Get Started",
+    "signIn": "Sign In"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signInDescription": "Sign in to your ReviewBoost account",
+    "signUp": "Create Account",
+    "signUpDescription": "Start managing your reviews with AI",
+    "signOut": "Sign Out",
+    "continueWithGoogle": "Continue with Google",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset Password",
+    "resetPasswordDescription": "Enter your email to receive a password reset link",
+    "sendResetLink": "Send Reset Link",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Marie-Claire Tremblay",
+    "passwordPlaceholder": "Enter your password",
+    "passwordMinLength": "At least 6 characters",
+    "createAccount": "Create Account",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "rememberPassword": "Remember your password?",
+    "errorInvalid": "Invalid email or password. Please try again.",
+    "errorOAuth": "Could not sign in with Google. Please try again.",
+    "errorAuth": "Authentication failed. Please try again.",
+    "errorSignup": "Could not create account. Please try again.",
+    "errorReset": "Could not send reset link. Please try again.",
+    "checkEmail": "Check your email for a confirmation link to complete signup.",
+    "checkEmailReset": "Check your email for a password reset link."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "reviews": "Reviews",
+    "responses": "AI Responses",
+    "analytics": "Analytics",
+    "settings": "Settings",
+    "toggleMenu": "Toggle menu"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Overview of your review performance"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "description": "Manage and respond to your reviews"
+  },
+  "responses": {
+    "title": "AI Responses",
+    "description": "View and edit AI-generated review responses"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "description": "Track your review metrics and trends"
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your account and organization settings"
+  },
+  "userMenu": {
+    "myAccount": "My Account",
+    "settings": "Settings",
+    "profile": "Profile",
+    "signOut": "Sign Out"
+  },
+  "metadata": {
+    "title": "ReviewBoost - AI Review Management",
+    "description": "AI-powered review management for small businesses. Respond to reviews faster with AI assistance."
+  }
+}

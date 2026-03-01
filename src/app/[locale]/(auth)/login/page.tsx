@@ -1,5 +1,12 @@
-import Link from "next/link";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -11,28 +18,28 @@ export default function LoginPage({
 }: {
   searchParams: { error?: string };
 }) {
+  const t = useTranslations();
+
   return (
     <Card>
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl">Sign In</CardTitle>
-        <CardDescription>
-          Sign in to your ReviewBoost account
-        </CardDescription>
+        <CardTitle className="text-2xl">{t("auth.signIn")}</CardTitle>
+        <CardDescription>{t("auth.signInDescription")}</CardDescription>
       </CardHeader>
       <CardContent>
         {searchParams.error === "invalid" && (
           <div className="mb-4 rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-            Invalid email or password. Please try again.
+            {t("auth.errorInvalid")}
           </div>
         )}
         {searchParams.error === "oauth" && (
           <div className="mb-4 rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-            Could not sign in with Google. Please try again.
+            {t("auth.errorOAuth")}
           </div>
         )}
         {searchParams.error === "auth" && (
           <div className="mb-4 rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-            Authentication failed. Please try again.
+            {t("auth.errorAuth")}
           </div>
         )}
 
@@ -56,54 +63,59 @@ export default function LoginPage({
                 fill="#EA4335"
               />
             </svg>
-            Continue with Google
+            {t("auth.continueWithGoogle")}
           </Button>
         </form>
 
         <div className="my-6 flex items-center gap-3">
           <Separator className="flex-1" />
-          <span className="text-xs text-muted-foreground">OR</span>
+          <span className="text-xs text-muted-foreground">
+            {t("common.or")}
+          </span>
           <Separator className="flex-1" />
         </div>
 
         <form action={login} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t("common.email")}</Label>
             <Input
               id="email"
               name="email"
               type="email"
-              placeholder="you@example.com"
+              placeholder={t("common.emailPlaceholder")}
               required
             />
           </div>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t("common.password")}</Label>
               <Link
                 href="/forgot-password"
                 className="text-xs text-muted-foreground hover:text-primary"
               >
-                Forgot password?
+                {t("auth.forgotPassword")}
               </Link>
             </div>
             <Input
               id="password"
               name="password"
               type="password"
-              placeholder="Enter your password"
+              placeholder={t("auth.passwordPlaceholder")}
               required
             />
           </div>
           <Button type="submit" className="w-full">
-            Sign In
+            {t("auth.signIn")}
           </Button>
         </form>
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="font-medium text-primary hover:underline">
-            Sign up
+          {t("auth.noAccount")}{" "}
+          <Link
+            href="/signup"
+            className="font-medium text-primary hover:underline"
+          >
+            {t("auth.signUp")}
           </Link>
         </p>
       </CardContent>

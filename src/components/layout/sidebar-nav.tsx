@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
@@ -13,27 +13,27 @@ import {
 
 const navItems = [
   {
-    title: "Dashboard",
+    titleKey: "dashboard" as const,
     href: "/dashboard",
     icon: LayoutDashboard,
   },
   {
-    title: "Reviews",
+    titleKey: "reviews" as const,
     href: "/dashboard/reviews",
     icon: Star,
   },
   {
-    title: "AI Responses",
+    titleKey: "responses" as const,
     href: "/dashboard/responses",
     icon: MessageSquare,
   },
   {
-    title: "Analytics",
+    titleKey: "analytics" as const,
     href: "/dashboard/analytics",
     icon: BarChart3,
   },
   {
-    title: "Settings",
+    titleKey: "settings" as const,
     href: "/dashboard/settings",
     icon: Settings,
   },
@@ -41,6 +41,7 @@ const navItems = [
 
 export function SidebarNav() {
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   return (
     <nav className="flex flex-col gap-1 px-3">
@@ -62,7 +63,7 @@ export function SidebarNav() {
             )}
           >
             <item.icon className="h-4 w-4" />
-            {item.title}
+            {t(item.titleKey)}
           </Link>
         );
       })}

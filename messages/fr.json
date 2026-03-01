@@ -1,0 +1,80 @@
+{
+  "common": {
+    "appName": "ReviewBoost",
+    "or": "OU",
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "emailPlaceholder": "vous@exemple.com",
+    "loading": "Chargement..."
+  },
+  "landing": {
+    "tagline": "Gestion des avis propulsée par l'IA pour les petites entreprises",
+    "getStarted": "Commencer",
+    "signIn": "Se connecter"
+  },
+  "auth": {
+    "signIn": "Connexion",
+    "signInDescription": "Connectez-vous à votre compte ReviewBoost",
+    "signUp": "Créer un compte",
+    "signUpDescription": "Commencez à gérer vos avis avec l'IA",
+    "signOut": "Déconnexion",
+    "continueWithGoogle": "Continuer avec Google",
+    "forgotPassword": "Mot de passe oublié?",
+    "resetPassword": "Réinitialiser le mot de passe",
+    "resetPasswordDescription": "Entrez votre courriel pour recevoir un lien de réinitialisation",
+    "sendResetLink": "Envoyer le lien",
+    "fullName": "Nom complet",
+    "fullNamePlaceholder": "Marie-Claire Tremblay",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "passwordMinLength": "Au moins 6 caractères",
+    "createAccount": "Créer le compte",
+    "noAccount": "Vous n'avez pas de compte?",
+    "haveAccount": "Vous avez déjà un compte?",
+    "rememberPassword": "Vous vous souvenez de votre mot de passe?",
+    "errorInvalid": "Courriel ou mot de passe invalide. Veuillez réessayer.",
+    "errorOAuth": "Connexion avec Google impossible. Veuillez réessayer.",
+    "errorAuth": "Échec de l'authentification. Veuillez réessayer.",
+    "errorSignup": "Création du compte impossible. Veuillez réessayer.",
+    "errorReset": "Envoi du lien impossible. Veuillez réessayer.",
+    "checkEmail": "Vérifiez votre courriel pour un lien de confirmation.",
+    "checkEmailReset": "Vérifiez votre courriel pour un lien de réinitialisation."
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "reviews": "Avis",
+    "responses": "Réponses IA",
+    "analytics": "Analytique",
+    "settings": "Paramètres",
+    "toggleMenu": "Ouvrir le menu"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "description": "Aperçu de la performance de vos avis"
+  },
+  "reviews": {
+    "title": "Avis",
+    "description": "Gérez et répondez à vos avis"
+  },
+  "responses": {
+    "title": "Réponses IA",
+    "description": "Consultez et modifiez les réponses générées par l'IA"
+  },
+  "analytics": {
+    "title": "Analytique",
+    "description": "Suivez vos indicateurs et tendances d'avis"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "description": "Gérez les paramètres de votre compte et organisation"
+  },
+  "userMenu": {
+    "myAccount": "Mon compte",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "signOut": "Déconnexion"
+  },
+  "metadata": {
+    "title": "ReviewBoost - Gestion des avis par IA",
+    "description": "Gestion des avis propulsée par l'IA pour les petites entreprises. Répondez plus rapidement grâce à l'assistance IA."
+  }
+}
