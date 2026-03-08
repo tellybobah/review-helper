@@ -27,6 +27,7 @@ import { trpc } from "@/lib/trpc/client";
 
 export function AddReviewDialog() {
   const t = useTranslations("reviews");
+  const tCommon = useTranslations("common");
   const [open, setOpen] = useState(false);
   const [reviewerName, setReviewerName] = useState("");
   const [starRating, setStarRating] = useState(0);
@@ -130,7 +131,7 @@ export function AddReviewDialog() {
               variant="outline"
               onClick={() => setOpen(false)}
             >
-              {t("cancel", { ns: "common" })}
+              {tCommon("cancel")}
             </Button>
             <Button
               type="submit"
