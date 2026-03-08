@@ -1,9 +1,12 @@
-// TODO: Set up tRPC root router
-// import { router } from "../trpc";
-// import { reviewRouter } from "./review";
+import { router } from "@/server/trpc";
+import { organizationRouter } from "./organization";
+import { reviewRouter } from "./review";
+import { responseRouter } from "./response";
 
-// export const appRouter = router({
-//   review: reviewRouter,
-// });
+export const appRouter = router({
+  organization: organizationRouter,
+  review: reviewRouter,
+  response: responseRouter,
+});
 
-// export type AppRouter = typeof appRouter;
+export type AppRouter = typeof appRouter;

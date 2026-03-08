@@ -1,10 +1,13 @@
-// TODO: Set up tRPC API handler
-// This will be the main tRPC endpoint
+import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { appRouter } from "@/server/routers";
+import { createTRPCContext } from "@/server/trpc";
 
-export async function GET() {
-  return Response.json({ message: "tRPC endpoint - not yet configured" });
-}
+const handler = (req: Request) =>
+  fetchRequestHandler({
+    endpoint: "/api/trpc",
+    req,
+    router: appRouter,
+    createContext: createTRPCContext,
+  });
 
-export async function POST() {
-  return Response.json({ message: "tRPC endpoint - not yet configured" });
-}
+export { handler as GET, handler as POST };

@@ -5,7 +5,12 @@
     "email": "Email",
     "password": "Password",
     "emailPlaceholder": "you@example.com",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "close": "Close",
+    "error": "An error occurred"
   },
   "landing": {
     "tagline": "AI-powered review management for small businesses",
@@ -49,23 +54,118 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "description": "Overview of your review performance"
+    "description": "Overview of your review performance",
+    "totalReviews": "Total Reviews",
+    "averageRating": "Average Rating",
+    "pendingReviews": "Pending",
+    "draftedResponses": "Drafted",
+    "emptyTitle": "No reviews yet",
+    "emptyDescription": "Add your first review to get started with AI-powered response generation.",
+    "addFirstReview": "Add First Review"
   },
   "reviews": {
     "title": "Reviews",
-    "description": "Manage and respond to your reviews"
+    "description": "Manage and respond to your reviews",
+    "addReview": "Add Review",
+    "date": "Date",
+    "reviewer": "Reviewer",
+    "rating": "Rating",
+    "reviewText": "Review",
+    "status": "Status",
+    "actions": "Actions",
+    "generateResponse": "Generate AI Response",
+    "viewResponse": "View Response",
+    "noReviews": "No reviews found",
+    "noReviewsDescription": "Add a review manually to get started.",
+    "generating": "Generating...",
+    "addReviewTitle": "Add a Review",
+    "addReviewDescription": "Manually add a customer review.",
+    "reviewerName": "Reviewer Name",
+    "reviewerNamePlaceholder": "e.g. Jean-Pierre",
+    "starRating": "Star Rating",
+    "reviewTextLabel": "Review Text",
+    "reviewTextPlaceholder": "Enter the review text (optional)...",
+    "language": "Language",
+    "french": "French",
+    "english": "English"
   },
   "responses": {
     "title": "AI Responses",
-    "description": "View and edit AI-generated review responses"
-  },
-  "analytics": {
-    "title": "Analytics",
-    "description": "Track your review metrics and trends"
+    "description": "View and edit AI-generated review responses",
+    "tabAll": "All",
+    "tabDrafted": "Drafted",
+    "tabApproved": "Approved",
+    "editResponse": "Edit response...",
+    "approve": "Approve",
+    "skip": "Skip",
+    "regenerate": "Regenerate",
+    "regenerating": "Regenerating...",
+    "tone": "Tone",
+    "noResponses": "No responses yet",
+    "noResponsesDescription": "Generate AI responses from your reviews to see them here.",
+    "approved": "Response approved",
+    "skipped": "Review skipped",
+    "originalReview": "Original Review"
   },
   "settings": {
     "title": "Settings",
-    "description": "Manage your account and organization settings"
+    "description": "Manage your business settings and preferences",
+    "businessName": "Business Name",
+    "businessType": "Business Type",
+    "businessTypePlaceholder": "e.g. Restaurant, Salon, Clinic",
+    "reviewLink": "Review Link",
+    "reviewLinkPlaceholder": "https://g.page/your-business/review",
+    "languagePreference": "Language Preference",
+    "tonePreference": "Tone Preference",
+    "timezone": "Timezone",
+    "timezonePlaceholder": "e.g. America/Montreal",
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "saved": "Settings saved successfully",
+    "saveError": "Could not save settings. Please try again.",
+    "french": "French",
+    "english": "English",
+    "auto": "Auto-detect",
+    "professional": "Professional",
+    "friendly": "Friendly",
+    "casual": "Casual"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "description": "Insights and trends from your reviews",
+    "ratingDistribution": "Rating Distribution",
+    "reviewTrend": "Review Trend",
+    "responseRate": "Response Rate",
+    "avgResponseTime": "Avg. Response Time",
+    "totalReviews": "Total Reviews",
+    "thisMonth": "This Month",
+    "lastSixMonths": "Last 6 months",
+    "stars": "stars",
+    "oneStar": "star",
+    "reviews": "reviews",
+    "hours": "hours",
+    "noData": "No analytics data yet",
+    "noDataDescription": "Add reviews to start seeing analytics."
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again.",
+    "tryAgain": "Try Again",
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go to Dashboard"
+  },
+  "status": {
+    "pending": "Pending",
+    "drafted": "Drafted",
+    "approved": "Approved",
+    "posted": "Posted",
+    "skipped": "Skipped"
+  },
+  "tone": {
+    "professional": "Professional",
+    "friendly": "Friendly",
+    "casual": "Casual"
   },
   "userMenu": {
     "myAccount": "My Account",

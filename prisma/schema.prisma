@@ -114,7 +114,7 @@ model User {
 model Review {
   id                String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   organizationId    String         @map("organization_id") @db.Uuid
-  googleReviewId    String         @unique @map("google_review_id") @db.VarChar(255)
+  googleReviewId    String?        @unique @map("google_review_id") @db.VarChar(255)
   reviewerName      String         @map("reviewer_name") @db.VarChar(255)
   starRating        Int            @map("star_rating")
   reviewText        String?        @map("review_text") @db.Text

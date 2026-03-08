@@ -39,15 +39,17 @@ export async function signup(formData: FormData) {
       data: {
         full_name: fullName,
       },
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
     },
   });
 
   if (error) {
-    redirect({ href: "/signup?error=signup", locale });
+    console.error("Signup error:", error.message);
+    redirect({ href: `/signup?error=signup&message=${encodeURIComponent(error.message)}`, locale });
   }
 
   revalidatePath("/", "layout");
-  redirect({ href: "/signup?message=check-email", locale });
+  redirect({ href: "/dashboard", locale });
 }
 
 export async function forgotPassword(formData: FormData) {

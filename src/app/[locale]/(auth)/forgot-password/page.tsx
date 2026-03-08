@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import {
   Card,
@@ -12,12 +12,12 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { forgotPassword } from "../actions";
 
-export default function ForgotPasswordPage({
+export default async function ForgotPasswordPage({
   searchParams,
 }: {
   searchParams: { error?: string; message?: string };
 }) {
-  const t = useTranslations();
+  const t = await getTranslations();
 
   return (
     <Card>

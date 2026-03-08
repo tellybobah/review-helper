@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import {
   Card,
@@ -13,12 +13,12 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { signup, signInWithGoogle } from "../actions";
 
-export default function SignupPage({
+export default async function SignupPage({
   searchParams,
 }: {
   searchParams: { error?: string; message?: string };
 }) {
-  const t = useTranslations();
+  const t = await getTranslations();
 
   return (
     <Card>

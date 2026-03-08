@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import localFont from "next/font/local";
 import { routing } from "@/i18n/routing";
+import { TRPCProvider } from "@/lib/trpc/provider";
+import { Toaster } from "@/components/ui/toaster";
 import "../globals.css";
 
 const geistSans = localFont({
@@ -65,7 +67,10 @@ export default async function LocaleLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <TRPCProvider>
+            {children}
+            <Toaster />
+          </TRPCProvider>
         </NextIntlClientProvider>
         <script
           dangerouslySetInnerHTML={{
